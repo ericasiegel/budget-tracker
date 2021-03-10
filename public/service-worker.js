@@ -5,10 +5,12 @@ const CACHE_NAME = APP_PREFIX + VERSION;
 
 // list of files we will be caching
 const FILES_TO_CACHE = [
+    "/",
     "./index.html",
     "./js/index.js",
     "./js/idb.js",
     "./css/styles.css",
+    "./icons/icon-192x192.png"
 ]
 
 // install the service worker
