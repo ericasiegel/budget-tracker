@@ -10,8 +10,9 @@ const FILES_TO_CACHE = [
     "./js/index.js",
     "./js/idb.js",
     "./css/styles.css",
-    "./icons/icon-192x192.png",
-    "./manifest.json"
+    "./manifest.json",
+    "./icons/icon-192x192.png"
+
 ]
 
 // install the service worker
