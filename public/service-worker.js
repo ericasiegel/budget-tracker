@@ -46,3 +46,24 @@ self.addEventListener('activate', function(e) {
         })
     )
 })
+
+// get the information from the cache
+self.addEventListener('fetch', function (e) {
+    // listen for the fetch event and log the url of the requested resource
+    console.log('fetch request : ' + e.request.url)
+    // if the request is stored in the cache e.respondWith will deliver the resource directly from the cache, otherwise it will be retrieved normally
+    e.respondWith(
+        // use .match() to see if the resource already exists in the caches
+        caches.match(e.request).then(function (request) {
+            // if it matches, log the url to the console with a message and return the cached resource
+            if (request) {
+                console.log('responding with cache: ' + e.request.url)
+                return request;
+            } else {
+                // if the resource is not in caches, get the resource from the online network
+                console.log('file is not cached, fetching: ' + e.request.url)
+                return fetch(e.request)
+            }
+        })
+    )
+})
