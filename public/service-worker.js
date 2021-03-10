@@ -25,5 +25,24 @@ self.addEventListener('install', function(e) {
 
 // activate the service worker
 self.addEventListener('activate', function(e) {
-    e.waitUntil
+    e.waitUntil(
+        // .keys() returns an array of cached names we are calling keyList
+        caches.keys().then(function (keyList) {
+            // capture the caches with the appropriate prefix and save them to the cacheKeeplist array
+            let cacheKeeplist = keyList.filter(function (key) {
+                return key.indexOf(APP_PREFIX);
+            });
+            // return the cacheKeeplist to the activate event listener
+            cacheKeeplist.push(CACHE_NAME);
+            // return a promise that resolves once all old versions of the cache have been deleted
+            return Promise.all(
+                keyList.map(function(key, i) {
+                    if (cacheKeeplist.indexOf(key) === -1) {
+                        console.log('deleting cache: ' + keyList[i]);
+                        return caches.delete(keyList[i]);
+                    }
+                })
+            )
+        })
+    )
 })
