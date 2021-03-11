@@ -48,8 +48,8 @@ This Budget Tracker allows the user to import their budget data online and offli
 ![Budget Tracker main page](./images/main.png)
 
 
-### Offline Data View
-![Offline Data View](./images/offline.png)
+### Offline Cached Data View
+![Offline Cached Data View](./images/offline.png)
 
 
 ### Successful Upload When Online
